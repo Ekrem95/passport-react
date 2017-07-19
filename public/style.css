@@ -164,3 +164,33 @@ body{
 .post img{
   width: 400px;
 }
+@media (max-width: 500px) {
+  /*Nav component*/
+  .nav .link{
+    margin: 10px 0px 10px 10px;
+  }
+  .logout{
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
+  /*Index page*/
+  .index{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .index img{
+    object-fit: cover;
+    width: 90vw;
+    height: 90vw;
+  }
+  /*Login Page*/
+  .login{
+    margin-top: 50px;
+  }
+  /*Dashboard page*/
+  .dashboard *{
+    max-width: 90vw;
+  }
+}
