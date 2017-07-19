@@ -116,3 +116,51 @@ body{
 .login button:hover{
   background: rgb(0, 124, 255);
 }
+/*Dashboard Page*/
+.dashboard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+.dashboard *{
+  max-width: 600px;
+  align-self: center;
+}
+.dashboard textarea{
+  width: 400px;
+}
+.dashboard .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+.dashboard button{
+  margin: 20px 10px;
+  border: none;
+  background: rgb(0, 101, 158);
+  color: #fff;
+  border-radius: 3px;
+  height: 26px;
+  width: 90px;
+  font-size: 1.1rem;
+}
+#load-more{
+  width: 120px;
+  margin-bottom: 40px;
+}
+.post{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin: 20px 0;
+  border-bottom: 1px solid rgba(224, 212, 255, .5);
+}
+.post p{
+  width: 400px;
+}
+.post img{
+  width: 400px;
+}

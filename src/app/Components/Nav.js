@@ -10,6 +10,7 @@ export default class Nav extends Component {
     this.state = {
       loggedIn: Boolean,
     };
+    // this.logout = this.logout.bind(this);
   }
 
   componentWillMount(nextState, transition) {
@@ -26,6 +27,16 @@ export default class Nav extends Component {
         }
       });
   }
+
+  // logout() {
+  //   this.setState({
+  //     loggedIn: false,
+  //   });
+  //   window.location.replace('/logout');
+  //   this.setState({
+  //     loggedIn: false,
+  //   });
+  // }
 
   render () {
     return (

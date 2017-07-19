@@ -10,3 +10,5 @@ export function loggedIn() {
       }
     });
 }
+
+export const rootUrl = 'https://react-eko.herokuapp.com/api';

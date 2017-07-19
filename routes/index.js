@@ -12,6 +12,11 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
+router.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/login');
+});
+
 router.get('*', ensureAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
@@ -39,7 +44,7 @@ router.post('/signup', function (req, res) {
   const errors = req.validationErrors();
 
   if (errors) {
-    res.render('signup', {
+    res.send({
       errors: errors,
     });
   } else {
@@ -53,8 +58,6 @@ router.post('/signup', function (req, res) {
       if (err) throw err;
       console.log(user);
     });
-
-    req.flash('success_msg', 'You are registered and can now login');
 
     res.redirect('/login');
   }
@@ -90,18 +93,9 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: true }),
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }),
   function (req, res) {
-    req.flash('success_msg', 'You are logged in');
     res.redirect('/');
   });
-
-router.get('/logout', function (req, res) {
-  req.logout();
-
-  req.flash('success_msg', 'You are logged out');
-
-  res.redirect('/login');
-});
 
 module.exports = router;

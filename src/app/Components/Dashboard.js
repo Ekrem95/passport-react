@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { loggedIn } from '../helpers/actions';
+import { loggedIn, rootUrl } from '../helpers/actions';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount(nextState, transition) {
-    axios.get('https://react-eko.herokuapp.com/api/posts/0')
+    axios.get(rootUrl + '/posts/0')
       .then(res => {
         this.setState({
           data: res,
@@ -47,7 +47,7 @@ export default class Dashboard extends Component {
         console.log(err);
       });
 
-    axios.get('api/usr')
+    axios.get(rootUrl + '/usr')
       .then(res => {
         this.setState({
           user: res.data,
@@ -57,7 +57,7 @@ export default class Dashboard extends Component {
         console.log(err);
       });
 
-    axios.get('api/count/posts')
+    axios.get(rootUrl + '/count/posts')
       .then(res => {
         this.setState({
           length: res.data,
@@ -111,11 +111,11 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', }}>
       <div className="dashboard">
+      <div className="content">
         {this.state.user &&
-          <div className="dashboardFirst">
-          <p className="passwordLink">
+          <div>
+          <p>
             <Link
               to="/changepassword"
               >{this.state.user.email}</Link></p>
@@ -131,12 +131,14 @@ export default class Dashboard extends Component {
                 <h3>{post.title}</h3>
                 <p>{post.desc}</p>
                 <img src={post.src}/>
-                <Link to={'/p/d/' + post._id}>
-                  <button className="firstButton">Details</button>
-                </Link>
-                <Link to={'/p/' + post._id}>
-                  <button className="secondButton">Edit</button>
-                </Link>
+                <div className="buttons">
+                  <Link to={'/p/d/' + post._id}>
+                    <button>Details</button>
+                  </Link>
+                  <Link to={'/p/' + post._id}>
+                    <button>Edit</button>
+                  </Link>
+                </div>
               </div>
             );
           })
