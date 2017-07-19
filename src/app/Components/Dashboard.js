@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { loggedIn } from '../helpers/actions';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -18,6 +19,8 @@ export default class Dashboard extends Component {
   }
 
   componentWillMount(nextState, transition) {
+    loggedIn();
+
     const self = this;
     window.onscroll = function () {
       if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { loggedIn } from '../helpers/actions';
 
 export default class Index extends Component {
   constructor(props) {
@@ -11,12 +12,8 @@ export default class Index extends Component {
   }
 
   componentWillMount() {
-    axios.get('/api/user')
-      .then(res => {
-        if (res.data.user === null) {
-          window.location.replace('/login');
-        }
-      });
+    loggedIn();
+
     axios.get('https://react-eko.herokuapp.com/api/posts')
       .then(res => {
         this.setState({

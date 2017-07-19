@@ -8,7 +8,7 @@ const User = require('../models/user');
 router.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
-router.get('/register', (req, res) => {
+router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
@@ -24,7 +24,7 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
-router.post('/register', function (req, res) {
+router.post('/signup', function (req, res) {
   const email = req.body.email;
   const username = req.body.username;
   const password = req.body.password;
@@ -39,7 +39,7 @@ router.post('/register', function (req, res) {
   const errors = req.validationErrors();
 
   if (errors) {
-    res.render('register', {
+    res.render('signup', {
       errors: errors,
     });
   } else {

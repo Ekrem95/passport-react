@@ -6,7 +6,7 @@ import Nav from './Components/Nav';
 import Index from './Components/Index';
 import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
-import Register from './Components/Register';
+import Signup from './Components/Signup';
 
 class App extends React.Component {
   render() {
@@ -18,7 +18,7 @@ class App extends React.Component {
             <Route exact path="/" component={Index} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route path="/signup" component={Signup} />
           </Switch>
         </div>
       </BrowserRouter>
