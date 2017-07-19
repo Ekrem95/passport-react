@@ -7,7 +7,7 @@ export default class Signup extends Component {
     return (
       <div className="login">
         <h2>Sign up</h2>
-        <form method="post" action="/register">
+        <form method="post" action="/signup">
           <div>
             <label>Username</label>
             <input type="text" placeholder="Username" name="username" autoFocus/>

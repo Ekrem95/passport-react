@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "8.1.4"
+  },
   "scripts": {
     "start": "node app.js",
     "build": "babel ./lib -d dist --presets es2015,stage-2",

@@ -15,7 +15,7 @@ const dotenv = require('dotenv');
 
 dotenv.load();
 
-mongoose.connect('mongodb://localhost/loginapp');
+mongoose.connect(process.env.mongoDb);
 // const db = mongoose.connection;
 
 const routes = require('./routes/index');
