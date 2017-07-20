@@ -12,7 +12,10 @@ export default class Index extends Component {
   }
 
   componentWillMount() {
-    loggedIn();
+    // if (localStorage.getItem('token') === null) {
+    //   window.location.replace('/login');
+    //   return;
+    // }
 
     axios.get('https://react-eko.herokuapp.com/api/posts')
       .then(res => {

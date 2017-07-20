@@ -13,17 +13,10 @@ export default class Nav extends Component {
     };
     this.logout = this.logout.bind(this);
     this.update = this.update.bind(this);
-    this.inter = this.inter.bind(this);
   }
 
   componentWillMount(nextState, transition) {
     this.update();
-    this.inter();
-  }
-
-  inter() {
-    const interval = setInterval(this.update, 200);
-    setTimeout(function () { clearInterval(interval); }, 5000);
   }
 
   update() {
@@ -36,8 +29,6 @@ export default class Nav extends Component {
         loggedIn: false,
       });
     }
-
-    console.log('king');
   }
 
   logout() {
@@ -54,6 +45,11 @@ export default class Nav extends Component {
         {!this.state.loggedIn &&
           <div>
             <Link
+              to="/"
+              className="link"
+              >Home</Link>
+          <div className="link logout">
+            <Link
               to="/login"
               className="link"
               >Login</Link>
@@ -61,6 +57,7 @@ export default class Nav extends Component {
               to="/signup"
               className="link"
               >Signup</Link>
+          </div>
           </div>
         }
         {this.state.loggedIn &&
@@ -73,14 +70,15 @@ export default class Nav extends Component {
               to="/dashboard"
               className="link"
               >Dashboard</Link>
-            <a
-              href="#"
-              onClick={this.logout}
-              className="link logout"
-              >Logout</a>
+            <div>
+              <a
+                href="#"
+                onClick={this.logout}
+                className="link logout"
+                >Logout</a>
+            </div>
           </div>
         }
-
       </div>
     );
   }

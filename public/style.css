@@ -21,20 +21,13 @@ body{
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
-  margin: 10px;
+  margin: 6px;
 }
 /*Nav Component*/
 .nav{
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-flow: column;
+  justify-content: center;
   background: rgb(219, 27, 96);
   height: 40px;
   margin: 0;
@@ -146,6 +139,9 @@ body{
   width: 90px;
   font-size: 1.1rem;
 }
+.dashboard button:hover{
+  background: rgb(33, 143, 205);
+}
 #load-more{
   width: 120px;
   margin-bottom: 40px;
@@ -163,6 +159,20 @@ body{
 }
 .post img{
   width: 400px;
+}
+/*NotFound page*/
+.notfound{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20%;
+}
+.notfound .link{
+  text-decoration: none;
+  color: #fff;
+  border-radius: 3px;
+  padding: 10px;
+  background: rgba(3, 86, 139, 0.81);
 }
 @media (max-width: 500px) {
   /*Nav component*/
