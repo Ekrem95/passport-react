@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { loggedIn } from '../helpers/actions';
 
 const userUrl = '/api/user';
 
@@ -10,33 +11,42 @@ export default class Nav extends Component {
     this.state = {
       loggedIn: Boolean,
     };
-    // this.logout = this.logout.bind(this);
+    this.logout = this.logout.bind(this);
+    this.update = this.update.bind(this);
+    this.inter = this.inter.bind(this);
   }
 
   componentWillMount(nextState, transition) {
-    axios.get(userUrl)
-      .then(res => {
-        if (res.data.user === null) {
-          this.setState({
-            loggedIn: false,
-          });
-        } else {
-          this.setState({
-            loggedIn: true,
-          });
-        }
-      });
+    this.update();
+    this.inter();
   }
 
-  // logout() {
-  //   this.setState({
-  //     loggedIn: false,
-  //   });
-  //   window.location.replace('/logout');
-  //   this.setState({
-  //     loggedIn: false,
-  //   });
-  // }
+  inter() {
+    const interval = setInterval(this.update, 200);
+    setTimeout(function () { clearInterval(interval); }, 5000);
+  }
+
+  update() {
+    if (loggedIn()) {
+      this.setState({
+        loggedIn: true,
+      });
+    } else {
+      this.setState({
+        loggedIn: false,
+      });
+    }
+
+    console.log('king');
+  }
+
+  logout() {
+    // this.setState({
+    //   loggedIn: false,
+    // });
+    localStorage.removeItem('token');
+    window.location.replace('/logout');
+  }
 
   render () {
     return (
@@ -58,13 +68,14 @@ export default class Nav extends Component {
             <Link
               to="/"
               className="link"
-              >X</Link>
+              >Home</Link>
             <Link
               to="/dashboard"
               className="link"
               >Dashboard</Link>
             <a
-              href="/logout"
+              href="#"
+              onClick={this.logout}
               className="link logout"
               >Logout</a>
           </div>

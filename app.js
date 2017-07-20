@@ -18,7 +18,7 @@ dotenv.load();
 mongoose.connect(process.env.mongoDb);
 // const db = mongoose.connection;
 
-const routes = require('./routes/index');
+const router = require('./routes/router');
 const api = require('./routes/api');
 
 const app = express();
@@ -50,7 +50,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api', api);
-app.use('/', routes);
+app.use('/', router);
 
 app.set('port', (process.env.PORT || 3000));
 
