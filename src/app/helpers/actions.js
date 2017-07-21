@@ -22,4 +22,5 @@ export function loggedIn() {
   }
 }
 
-export const rootUrl = 'https://react-eko.herokuapp.com/api';
+export const rootUrl = 'https://react-eko.herokuapp.com/api/';
+export const postDetails = 'https://react-eko.herokuapp.com/p/d';
