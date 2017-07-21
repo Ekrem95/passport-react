@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { store } from './helpers/reducers';
 
 import Nav from './Components/Nav';
 import Index from './Components/Index';
@@ -16,8 +18,9 @@ import style from './style.scss';
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter>
-        <div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div>
           <Nav />
           <Switch>
             <Route exact path="/" component={Index} />
@@ -28,8 +31,9 @@ class App extends React.Component {
             <Route path="/redux" component={Redux} />
             <Route path="*" component={NotFound} />
           </Switch>
-        </div>
-      </BrowserRouter>
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

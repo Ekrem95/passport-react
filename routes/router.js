@@ -4,6 +4,7 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 router.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
@@ -12,12 +13,12 @@ router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-router.get('/logout', function (req, res) {
+router.post('/logout', function (req, res) {
   req.logout();
-  res.redirect('/login');
+  res.send({ message: 'logout' });
 });
 
-router.get('*', (req, res) => {
+router.get('*', ensureAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
@@ -93,9 +94,12 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/dashboard', failureRedirect: '/login' }),
+  passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
-    res.redirect('/');
+    console.log(req.user);
+    const user = req.user;
+    const token = jwt.sign({ user }, process.env.secret);
+    res.send({ token: token });
   });
 
 module.exports = router;

@@ -34,6 +34,13 @@ export default class Redux extends Component {
             }
           }
           >R</button>
+        <button
+          onClick={
+            () => {
+              this.props.history.push('/dashboard');
+            }
+          }
+          >Eko</button>
       </div>
     );
   }

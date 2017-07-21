@@ -8,17 +8,7 @@ export function loggedIn() {
   }
 
   if (localStorage.getItem('token') === null) {
-    axios.get(userUrl)
-      .then(res => {
-        if (res.data.token === null) {
-          // window.location.replace('/login');
-          return false;
-        } else {
-          localStorage.setItem('token', res.data.token);
-          // window.location.replace('/dashboard');
-          return true;
-        }
-      });
+    return false;
   }
 }
 
