@@ -17,7 +17,7 @@ router.get('/logout', function (req, res) {
   res.redirect('/login');
 });
 
-router.get('*', ensureAuthenticated, (req, res) => {
+router.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 

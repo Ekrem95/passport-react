@@ -49,7 +49,6 @@ export default class Details extends Component {
 
   render () {
     const data = this.state.data;
-    //console.log(data);
     return (
       <div className="details">
         <h1>{data.title}</h1>

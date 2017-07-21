@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { loggedIn } from '../helpers/actions';
+import { store } from '../helpers/reducers';
 
 const userUrl = '/api/user';
 
@@ -42,6 +43,10 @@ export default class Nav extends Component {
   render () {
     return (
       <div className="nav">
+        <Link
+          to="/"
+          className="link"
+          >{store.getState()}</Link>
         {!this.state.loggedIn &&
           <div>
             <Link

@@ -15,7 +15,7 @@ export function loggedIn() {
           return false;
         } else {
           localStorage.setItem('token', res.data.token);
-          window.location.replace('/dashboard');
+          // window.location.replace('/dashboard');
           return true;
         }
       });
