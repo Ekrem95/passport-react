@@ -40,7 +40,6 @@ export default class Signup extends Component {
       }) // sends a JSON post body
       .set('Accept', 'application/json')
       .then(res => {
-        console.log(res);
         if (res.body.errors) {
           this.setState({ errors: res.body.errors });
         } else {
@@ -50,7 +49,7 @@ export default class Signup extends Component {
               this.setState({ msg: 'This email is already taken.' });
             }
           } else {
-            if (res.body.token) {
+            if (res.body.signup === true) {
               this.setState({
                 errors: [],
                 msg: 'You are signed up and now login',

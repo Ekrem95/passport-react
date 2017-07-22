@@ -8,7 +8,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
       error: '',
     };
@@ -16,19 +16,19 @@ export default class Login extends Component {
   }
 
   login() {
-    if (this.state.username.length > 1 && this.state.password.length > 1) {
+    if (this.state.email.length > 1 && this.state.password.length > 1) {
 
-      const username = this.state.username;
+      const email = this.state.email;
       const password = this.state.password;
 
-      document.getElementById('username').value = '';
+      document.getElementById('email').value = '';
       document.getElementById('password').value = '';
 
       request
         .post('/login')
         .type('form')
         .send({
-          username: username,
+          email: email,
           password: password,
         }) // sends a JSON post body
         .set('Accept', 'application/json')
@@ -55,14 +55,14 @@ export default class Login extends Component {
         }
         <form>
           <div>
-            <label>Username</label>
+            <label>Email</label>
             <input type="text"
-               id="username"
-                placeholder="Username"
+               id="email"
+                placeholder="Email"
                 autoFocus
                 onChange={ e => {
                   this.setState({
-                    username: e.target.value,
+                    email: e.target.value,
                   });
                 }}
 

@@ -61,19 +61,14 @@ router.post('/signup', function (req, res) {
         return;
       }
 
-      passport.authenticate('local', { failureRedirect: '/login' });
-      (req, res) => {
-        const user = req.user;
-        const token = jwt.sign({ user }, process.env.secret);
-        res.send({ token: token });
-      };
-
+      res.send({ signup: true });
     });
 
   }
 });
 
 passport.use(new LocalStrategy(
+  { usernameField: 'email' },
   function (email, password, done) {
     User.findOne({ email: email }, function (err, user) {
       if (err) throw err;
