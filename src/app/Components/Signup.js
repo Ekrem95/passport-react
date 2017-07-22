@@ -52,9 +52,11 @@ export default class Signup extends Component {
             if (res.body.signup === true) {
               this.setState({
                 errors: [],
-                msg: 'You are signed up and now login',
+                msg: 'You are signed up and can now login',
               });
-              setTimeout(this.props.history.push('/login'), 2000);
+              let timeout = setTimeout(() => {
+                this.props.history.push('/login');
+              }, 5000);
             }
           }
         }

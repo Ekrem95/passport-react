@@ -35,7 +35,8 @@ export default class Login extends Component {
         .then(res => {
           if (res.body === null) {
             this.setState({
-              error: 'badRequest',
+              error: `Invalid email & password combination.
+                      Please try again.`,
             });
           } else {
             localStorage.setItem('token', res.body.token);

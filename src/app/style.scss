@@ -17,12 +17,46 @@ body {
   flex-flow: row;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  img {
-    width: 200px;
-    height: 200px;
-    -o-object-fit: cover;
-    object-fit: cover;
-    margin: 6px;
+  div{
+    margin: 10px;
+    border: 1px solid rgb(59, 59, 59);
+    border-radius: 5px;
+    width: 260px;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+
+    *{
+      margin: 10px 0;
+    }
+    h3{
+      width: 200px;
+      white-space: nowrap ;
+      overflow: hidden;
+      padding: 0 5px;
+    }
+    img {
+      width: 230px;
+      height: 230px;
+      -o-object-fit: cover;
+      object-fit: cover;
+    }
+    p {
+      width: 230px;
+      height: 160px;
+      padding: 0px 10px;
+      line-height: 20px;
+      overflow: hidden;
+    }
+    span{
+      background: rgb(9, 36, 65);
+      padding: 10px;
+      border-radius: 3px;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
   }
 }
 

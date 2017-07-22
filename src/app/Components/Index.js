@@ -37,12 +37,21 @@ export default class Index extends Component {
           className="index"
           >
           { this.state.data.length > 0 &&
-            this.state.data.map(act => {
+            this.state.data.map(post => {
               return (
-                <img
-                  key={act._id}
-                  src={act.src}
-                />
+                <div key={post._id}>
+                  <h3>{post.title}</h3>
+                  <img
+                    key={post._id}
+                    src={post.src}
+                  />
+                  <p>{post.desc}</p>
+                  <span
+                    onClick={() => {
+                      this.props.history.push(`/p/d/${post._id}`);
+                    }}
+                    >{post.comments.length} comments</span>
+                </div>
               );
             })
           }
