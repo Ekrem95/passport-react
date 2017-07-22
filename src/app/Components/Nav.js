@@ -64,17 +64,17 @@ export default class Nav extends Component {
 
     request
       .post('/logout')
-    .type('form')
-    .send({
-      logout: true,
-    }) // sends a JSON post body
-    .set('Accept', 'application/json')
-    .then(res => {
-      if (res.statusCode === 200) {
-        localStorage.removeItem('token');
-        window.location.replace('/login');
-      }
-    });
+      .type('form')
+      .send({
+        logout: true,
+      })
+      .set('Accept', 'application/json')
+      .then(res => {
+        if (res.statusCode === 200) {
+          localStorage.removeItem('token');
+          window.location.replace('/login');
+        }
+      });
   }
 
   render () {

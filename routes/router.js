@@ -56,17 +56,26 @@ router.post('/signup', function (req, res) {
     });
 
     User.createUser(newUser, function (err, user) {
-      if (err) throw err;
-      console.log(user);
+      if (err) {
+        res.send({ err: err });
+        return;
+      }
+
+      passport.authenticate('local', { failureRedirect: '/login' });
+      (req, res) => {
+        const user = req.user;
+        const token = jwt.sign({ user }, process.env.secret);
+        res.send({ token: token });
+      };
+
     });
 
-    res.redirect('/login');
   }
 });
 
 passport.use(new LocalStrategy(
-  function (username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
+  function (email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
       if (err) throw err;
       if (!user) {
         return done(null, false, { message: 'Unknown User' });
@@ -96,7 +105,6 @@ passport.deserializeUser(function (id, done) {
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
-    console.log(req.user);
     const user = req.user;
     const token = jwt.sign({ user }, process.env.secret);
     res.send({ token: token });

@@ -15,7 +15,7 @@ const dotenv = require('dotenv');
 
 dotenv.load();
 
-mongoose.connect(process.env.mongoDb);
+mongoose.connect(process.env.mongoDb, { useMongoClient: true });
 // const db = mongoose.connection;
 
 const router = require('./routes/router');

@@ -150,6 +150,9 @@ body {
   }
   textarea {
     width: 400px;
+    height: 22px;
+    padding-top: 6px;
+    resize: none;
   }
   .content {
     display: -webkit-box;
