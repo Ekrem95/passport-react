@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { loggedIn, rootUrl } from '../helpers/actions';
+import { rootUrl } from '../helpers/actions';
+import { auth } from '../helpers/actions';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -19,7 +20,9 @@ export default class Dashboard extends Component {
   }
 
   componentWillMount(nextState, transition) {
-    loggedIn();
+    if (!auth()) {
+      this.props.history.push('/login');
+    }
 
     const self = this;
     window.onscroll = function () {
@@ -36,36 +39,38 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount(nextState, transition) {
-    axios.get(rootUrl + '/posts/0')
-      .then(res => {
-        this.setState({
-          data: res,
-          fetched: res.data,
+    if (auth()) {
+      axios.get(rootUrl + '/posts/0')
+        .then(res => {
+          this.setState({
+            data: res,
+            fetched: res.data,
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
 
-    axios.get(rootUrl + '/usr')
-      .then(res => {
-        this.setState({
-          user: res.data,
+      axios.get(rootUrl + '/usr')
+        .then(res => {
+          this.setState({
+            user: res.data,
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
 
-    axios.get(rootUrl + '/count/posts')
-      .then(res => {
-        this.setState({
-          length: res.data,
+      axios.get(rootUrl + '/count/posts')
+        .then(res => {
+          this.setState({
+            length: res.data,
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    }
   }
 
   onChange(e) {

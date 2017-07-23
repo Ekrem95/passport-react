@@ -2,13 +2,11 @@ import axios from 'axios';
 
 const userUrl = '/api/user';
 
-export function loggedIn() {
-  if (localStorage.getItem('token') !== null) {
-    return true;
-  }
-
+export function auth() {
   if (localStorage.getItem('token') === null) {
     return false;
+  } else {
+    return true;
   }
 }
 

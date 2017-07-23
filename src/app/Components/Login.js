@@ -21,9 +21,6 @@ export default class Login extends Component {
       const email = this.state.email;
       const password = this.state.password;
 
-      document.getElementById('email').value = '';
-      document.getElementById('password').value = '';
-
       request
         .post('/login')
         .type('form')
@@ -83,7 +80,7 @@ export default class Login extends Component {
 
              />
           </div>
-          <button type="button" onClick={this.login}>Submit</button>
+          <button type="button" onClick={this.login}>Login</button>
         </form>
       </div>
     );

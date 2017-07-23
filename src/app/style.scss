@@ -1,11 +1,11 @@
+$nav-color: #0e479c;
+
 body {
   background: #000;
   color: #fff;
   margin: 0;
   font-size: 16px;
 }
-
-/*Index Page*/
 
 .index {
   display: -webkit-box;
@@ -17,6 +17,8 @@ body {
   flex-flow: row;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  justify-content: center;
+
   div{
     margin: 10px;
     border: 1px solid rgb(59, 59, 59);
@@ -55,6 +57,7 @@ body {
 
       &:hover{
         cursor: pointer;
+        background: rgb(17, 65, 116);
       }
     }
   }
@@ -73,18 +76,18 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: rgb(219, 27, 96);
+  background: $nav-color;
   height: 40px;
   margin: 0;
-  .link {
-    margin: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1rem;
-    &:hover {
-      color: rgb(248, 255, 108);
+    .link {
+      margin: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      &:hover {
+        color: rgb(186, 61, 230);
+      }
     }
-  }
 }
 
 .logout {
@@ -353,11 +356,18 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    img {
-      -o-object-fit: cover;
-         object-fit: cover;
-      width: 90vw;
-      height: 90vw;
+    div{
+      width: 92vw;
+
+      img {
+        -o-object-fit: cover;
+           object-fit: cover;
+        width: 86vw;
+        height: 86vw;
+      }
+      p{
+        width: 86vw;
+      }
     }
   }
   /*Login Page*/

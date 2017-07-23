@@ -52,7 +52,7 @@ export default class Signup extends Component {
             if (res.body.signup === true) {
               this.setState({
                 errors: [],
-                msg: 'You are signed up and can now login',
+                msg: 'You are signed up and now you can login',
               });
               let timeout = setTimeout(() => {
                 this.props.history.push('/login');
@@ -102,7 +102,7 @@ export default class Signup extends Component {
           <button
             type="button"
             onClick={this.signup}
-            >Submit</button>
+            >Signup</button>
         </form>
       </div>
     );

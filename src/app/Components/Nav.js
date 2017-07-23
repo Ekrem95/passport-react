@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { loggedIn } from '../helpers/actions';
 import { store } from '../helpers/reducers';
 import request from 'superagent';
 
@@ -14,28 +13,18 @@ export default class Nav extends Component {
       loggedIn: Boolean,
     };
     this.logout = this.logout.bind(this);
-    this.update = this.update.bind(this);
   }
 
   componentWillMount(nextState, transition) {
-    this.update();
-
     if (localStorage.getItem('token') === null) {
-      store.dispatch({ type: 'UNAUTH' });
+      this.setState({
+        loggedIn: false,
+      });
     } else {
-      store.dispatch({ type: 'AUTH' });
+      this.setState({
+        loggedIn: true,
+      });
     }
-
-    // const self = this;
-    // let x = 0;
-    // let interval = setInterval(function () {
-    //
-    //   self.update();
-    //
-    //   if (++x === 10) {
-    //     window.clearInterval(interval);
-    //   }
-    // }, 200);
 
     store.subscribe(() => {
       if (store.getState() === 1) {
@@ -46,22 +35,7 @@ export default class Nav extends Component {
     });
   }
 
-  update() {
-    if (loggedIn()) {
-      this.setState({
-        loggedIn: true,
-      });
-    } else {
-      this.setState({
-        loggedIn: false,
-      });
-    }
-  }
-
   logout() {
-    // localStorage.removeItem('token');
-    // window.location.replace('/logout');
-
     request
       .post('/logout')
       .type('form')
@@ -72,6 +46,7 @@ export default class Nav extends Component {
       .then(res => {
         if (res.statusCode === 200) {
           localStorage.removeItem('token');
+          store.dispatch({ type: 'UNAUTH' });
           window.location.replace('/login');
         }
       });
