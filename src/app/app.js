@@ -11,7 +11,7 @@ import Details from './Components/Details';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import NotFound from './Components/NotFound';
-import Redux from './Components/Redux';
+import Player from './Components/Player';
 
 import style from './style.scss';
 
@@ -28,7 +28,7 @@ class App extends React.Component {
             <Route path="/signup" component={Signup} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/p/d/:id" component={Details} />
-            <Route path="/redux" component={Redux} />
+            <Route path="/player" component={Player} />
             <Route path="*" component={NotFound} />
           </Switch>
           </div>

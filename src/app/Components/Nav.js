@@ -83,6 +83,10 @@ export default class Nav extends Component {
               to="/dashboard"
               className="link"
               >Dashboard</Link>
+            <Link
+              to="/player"
+              className="link"
+              >Player</Link>
             <div>
               <a
                 href="#"
