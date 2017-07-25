@@ -88,6 +88,35 @@ body {
         color: rgb(186, 61, 230);
       }
     }
+    .dropdown {
+      align-self: center;
+      justify-content: center;
+      align-items: center;
+      background: $nav-color;
+      display: flex;
+      flex-flow: column;
+      position: absolute;
+      left: 190px;
+      top: 10px;
+      font-size: 1.1rem;
+      width: 90px;
+      padding-bottom: 8px;
+
+      &:hover {
+        border-radius: 3px;
+
+        .link {
+          text-align: center;
+          margin: 10px 0 0 0;
+          display: flex;
+          // padding: 5px 15px;
+        }
+      }
+
+      .link{
+        display: none;
+      }
+    }
 }
 
 .logout {
@@ -337,13 +366,21 @@ body {
 
 @media (max-width: 500px) {
   /*Nav component*/
-  .nav .link {
-    margin: 10px 0px 10px 10px;
-  }
-  .logout {
-    position: absolute;
-    right: 10px;
-    top: 0;
+  .nav {
+    .link {
+      margin: 10px 0px 10px 10px;
+    }
+    .dropdown {
+      position: absolute;
+      left: 146px;
+      top: 10px;
+      width: 60px;
+    }
+    .logout {
+      position: absolute;
+      right: 10px;
+      top: 0;
+    }
   }
   /*Index page*/
   .index {
