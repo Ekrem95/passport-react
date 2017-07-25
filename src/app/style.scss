@@ -341,6 +341,45 @@ body {
   }
 }
 
+// Edit page
+
+.edit {
+  &, div {
+    &, form {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  form {
+    *{
+      margin: 16px;
+      width: 36vw;
+      font-size: 1rem;
+      border-radius: 3px;
+    }
+    input, button {
+      height: 40px;
+    }
+    textarea {
+      height: 80px;
+      resize: none;
+      overflow: hidden;
+    }
+    button {
+      border: none;
+      background: rgb(45, 142, 90);
+      color: #fff;
+
+      &:hover {
+        background: rgb(54, 180, 112);
+      }
+    }
+  }
+}
+
 /*NotFound page*/
 
 .notfound {

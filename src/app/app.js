@@ -8,6 +8,7 @@ import Nav from './Components/Nav';
 import Index from './Components/Index';
 import Dashboard from './Components/Dashboard';
 import Details from './Components/Details';
+import Edit from './Components/Edit';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import NotFound from './Components/NotFound';
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/signup" component={Signup} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/p/d/:id" component={Details} />
+            <Route path="/p/:id" component={Edit} />
             <Route path="/player" component={Player} />
             <Route path="*" component={NotFound} />
           </Switch>
