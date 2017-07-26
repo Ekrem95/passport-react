@@ -15,7 +15,7 @@ router.get('/signup', (req, res) => {
 
 router.post('/logout', function (req, res) {
   req.logout();
-  res.send({ message: 'logout' });
+  res.status(200).send({ message: 'logout' });
 });
 
 router.get('*', ensureAuthenticated, (req, res) => {

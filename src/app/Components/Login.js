@@ -27,7 +27,7 @@ export default class Login extends Component {
         .send({
           email: email,
           password: password,
-        }) // sends a JSON post body
+        })
         .set('Accept', 'application/json')
         .then(res => {
           if (res.body === null) {
