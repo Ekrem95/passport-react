@@ -91,9 +91,9 @@ export default class Nav extends Component {
                 className="link"
                 >Player</Link>
               <Link
-                to="/player"
+                to="/add"
                 className="link"
-                >Player</Link>
+                >Add</Link>
             </div>
             <div>
               <a

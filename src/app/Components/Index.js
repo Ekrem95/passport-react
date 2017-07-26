@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { auth } from '../helpers/actions';
+import { loggedIn } from '../helpers/actions';
 
 export default class Index extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Index extends Component {
   }
 
   componentWillMount() {
-    if (!auth()) {
+    if (!loggedIn()) {
       this.props.history.push('/login');
     } else {
       axios.get('https://react-eko.herokuapp.com/api/posts')

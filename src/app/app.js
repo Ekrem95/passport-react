@@ -13,6 +13,7 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import NotFound from './Components/NotFound';
 import Player from './Components/Player';
+import Add from './Components/Add';
 
 import style from './style.scss';
 
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/p/d/:id" component={Details} />
             <Route path="/p/:id" component={Edit} />
+            <Route path="/add" component={Add} />
             <Route path="/player" component={Player} />
             <Route path="*" component={NotFound} />
           </Switch>

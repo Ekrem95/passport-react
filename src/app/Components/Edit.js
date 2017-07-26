@@ -27,8 +27,6 @@ export default class Edit extends Component {
 
     const post = { title, desc, src };
 
-    // console.log(post);
-
     request
       .post(editPost)
       .type('form')
@@ -52,7 +50,7 @@ export default class Edit extends Component {
             <h3>{`Edit ${data.title}`}</h3>
             <form>
               <input defaultValue={data.title} type="text" id="title" placeholder="Title"/>
-              <input defaultValue={data.desc} type="text" id="desc" placeholder="Description"/>
+              <textarea defaultValue={data.desc} type="text" id="desc" placeholder="Description"></textarea>
               <textarea defaultValue={data.src} id="src" placeholder="Image Source"></textarea>
               <button onClick={this.edit} type="button">Edit</button>
             </form>

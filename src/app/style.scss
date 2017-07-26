@@ -1,5 +1,41 @@
 $nav-color: #0e479c;
 
+@mixin form-page-style {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin form-style {
+  *{
+    margin: 16px;
+    width: 40vw;
+    font-size: 1rem;
+    border-radius: 3px;
+  }
+  input, textarea {
+    padding-left: 5px;
+  }
+  input, button {
+    height: 40px;
+  }
+  textarea {
+    height: 80px;
+    resize: none;
+    overflow: hidden;
+  }
+  button {
+    border: none;
+    background: rgb(45, 142, 90);
+    color: #fff;
+    width: 41vw;
+
+    &:hover {
+      background: rgb(54, 180, 112);
+    }
+  }
+}
+
 body {
   background: #000;
   color: #fff;
@@ -346,37 +382,24 @@ body {
 .edit {
   &, div {
     &, form {
-      display: flex;
-      flex-flow: column;
-      justify-content: center;
-      align-items: center;
+      @include form-page-style;
     }
   }
 
   form {
-    *{
-      margin: 16px;
-      width: 36vw;
-      font-size: 1rem;
-      border-radius: 3px;
-    }
-    input, button {
-      height: 40px;
-    }
-    textarea {
-      height: 80px;
-      resize: none;
-      overflow: hidden;
-    }
-    button {
-      border: none;
-      background: rgb(45, 142, 90);
-      color: #fff;
+    @include form-style;
+  }
+}
 
-      &:hover {
-        background: rgb(54, 180, 112);
-      }
-    }
+// Add Page
+
+.add {
+  &, form {
+    @include form-page-style;
+  }
+
+  form {
+    @include form-style;
   }
 }
 
@@ -459,6 +482,22 @@ body {
   .details {
     *{
       max-width: 90vw;
+    }
+  }
+
+  // Edit page
+  .edit {
+    form {
+      * {
+        width: 80vw;
+      }
+    }
+  }
+  .add {
+    form {
+      *, button {
+        width: 80vw;
+      }
     }
   }
 }

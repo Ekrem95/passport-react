@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { rootUrl } from '../helpers/actions';
-import { auth } from '../helpers/actions';
+import { auth, loggedIn } from '../helpers/actions';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -20,9 +20,7 @@ export default class Dashboard extends Component {
   }
 
   componentWillMount(nextState, transition) {
-    if (!auth()) {
-      this.props.history.push('/login');
-    }
+    auth(this);
 
     const self = this;
     window.onscroll = function () {
@@ -39,7 +37,7 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount(nextState, transition) {
-    if (auth()) {
+    if (loggedIn()) {
       axios.get(rootUrl + '/posts/0')
         .then(res => {
           this.setState({
