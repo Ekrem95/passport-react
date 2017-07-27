@@ -4,16 +4,16 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import { store } from './helpers/reducers';
 
-import Nav from './Components/Nav';
-import Index from './Components/Index';
-import Dashboard from './Components/Dashboard';
-import Details from './Components/Details';
-import Edit from './Components/Edit';
-import Login from './Components/Login';
-import Signup from './Components/Signup';
-import NotFound from './Components/NotFound';
-import Player from './Components/Player';
-import Add from './Components/Add';
+import Nav from './Components/Nav/Nav';
+import Index from './Components/Index/Index';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Details from './Components/Details/Details';
+import Edit from './Components/Edit/Edit';
+import Login from './Components/Login/Login';
+import Signup from './Components/Signup/Signup';
+import NotFound from './Components/NotFound/NotFound';
+import Player from './Components/Player/Player';
+import Add from './Components/Add/Add';
 
 import style from './style.scss';
 
