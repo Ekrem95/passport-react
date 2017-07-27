@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "jest": {
+    "setupFiles":["<rootDir>/test/browserMock.js"]
+  },
   "engines": {
     "node": "8.1.4"
   },
@@ -10,7 +13,7 @@
     "start": "node app.js",
     "build": "babel ./lib -d dist --presets es2015,stage-2",
     "serve": "nodemon -q app.js --exec babel-node --presets es2015,stage-2",
-    "test": "mocha --compilers js:babel-register 'test/*.js'",
+    "test": "jest",
     "dev": "webpack -d --watch",
     "pro": "NODE_ENV=production webpack -p"
   },
@@ -19,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-preset-react": "^6.24.1",
     "bcryptjs": "^2.4.3",
@@ -32,7 +36,6 @@
     "express-session": "^1.15.3",
     "express-validator": "^3.2.1",
     "jsonwebtoken": "^7.4.1",
-    "mongodb": "^2.2.30",
     "mongoose": "^4.11.3",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
@@ -42,6 +45,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
+    "react-test-renderer": "^15.6.1",
     "redux": "^3.7.2",
     "serve-favicon": "^2.4.3",
     "superagent": "^3.5.2",
@@ -53,7 +57,8 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "css-loader": "^0.28.4",
-    "mocha": "^3.4.2",
+    "enzyme": "^2.9.1",
+    "jest": "^20.0.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
