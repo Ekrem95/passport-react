@@ -14,22 +14,28 @@ export default class Add extends Component {
   }
 
   add() {
-    const title = document.getElementById('title').value;
-    const desc = document.getElementById('desc').value;
-    const src = document.getElementById('src').value;
+    if (
+      document.getElementById('title').length > 1 &&
+      document.getElementById('desc').length > 1 &&
+      document.getElementById('src').length > 1) {
 
-    const post = { title, desc, src };
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('desc').value;
+      const src = document.getElementById('src').value;
 
-    request
-      .post(addPost)
-      .type('form')
-      .send(post)
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) console.log(err);
+      const post = { title, desc, src };
 
-        this.props.history.push('/dashboard');
-      });
+      request
+        .post(addPost)
+        .type('form')
+        .send(post)
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          if (err) console.log(err);
+
+          this.props.history.push('/dashboard');
+        });
+    }
   }
 
   render() {
