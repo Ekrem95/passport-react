@@ -15,13 +15,13 @@ export default class Add extends Component {
 
   add() {
     if (
-      document.getElementById('title').length > 1 &&
-      document.getElementById('desc').length > 1 &&
-      document.getElementById('src').length > 1) {
+      this.refs.title.value.length > 1 &&
+      this.refs.desc.value.length > 1 &&
+      this.refs.src.value.length > 1) {
 
-      const title = document.getElementById('title').value;
-      const desc = document.getElementById('desc').value;
-      const src = document.getElementById('src').value;
+      const title = this.refs.title.value;
+      const desc = this.refs.desc.value;
+      const src = this.refs.src.value;
 
       const post = { title, desc, src };
 
@@ -43,9 +43,9 @@ export default class Add extends Component {
       <div className="add">
         <h1>Add</h1>
         <form>
-          <input type="text" id="title" placeholder="Title" autoFocus/>
-          <textarea id="desc" placeholder="Description"></textarea>
-          <textarea id="src" placeholder="Image Source"></textarea>
+          <input type="text" ref="title" placeholder="Title" autoFocus/>
+          <textarea ref="desc" placeholder="Description"></textarea>
+          <textarea ref="src" placeholder="Image Source"></textarea>
           <button onClick={this.add} type="button">Add</button>
         </form>
       </div>
