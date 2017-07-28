@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import request from 'superagent';
 
 export default class Signup extends Component {
@@ -69,12 +68,12 @@ export default class Signup extends Component {
         <h2>Sign up</h2>
         {this.state.errors &&
           this.state.errors.map((error, i) => {
-            return (
-              <h4
-                key={i}
-                style={{ color: '#d61566' }}
-                >{error.msg}</h4>
-            );
+            const msg = <h4
+                          key={i}
+                          style={{ color: '#d61566' }}
+                          >{error.msg}
+                        </h4>;
+            return msg;
           })
         }
         {this.state.msg &&

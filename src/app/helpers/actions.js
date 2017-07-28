@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const userUrl = '/api/user';
 
 export function auth(component) {

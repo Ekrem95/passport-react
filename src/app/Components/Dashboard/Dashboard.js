@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import request from 'superagent';
 import { Link } from 'react-router-dom';
 import { rootUrl } from '../../helpers/actions';
 import { auth, loggedIn } from '../../helpers/actions';
@@ -8,9 +8,9 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
+      data: [],
       user: {},
-      fetched: {},
+      fetched: [],
       skip: 0,
       length: 5,
     };
@@ -22,47 +22,45 @@ export default class Dashboard extends Component {
   componentWillMount(nextState, transition) {
     auth(this);
 
-    const self = this;
-    window.onscroll = function () {
+    const _this = this;
+    window.onscroll = () => {
       if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-        self.loadMore(0);
+        _this.loadMore(0);
       }
     };
   }
 
   componentWillUnmount () {
-    window.onscroll = function () {
-      return;
-    };
+    window.onscroll = null;
   }
 
   componentDidMount(nextState, transition) {
     if (loggedIn()) {
-      axios.get(rootUrl + '/posts/0')
+      request.get(rootUrl + '/posts/0')
         .then(res => {
           this.setState({
-            data: res,
-            fetched: res.data,
+            data: res.body,
+            fetched: res.body,
           });
         })
         .catch(err => {
           console.log(err);
         });
 
-      axios.get(rootUrl + '/usr')
+      request.get('/api/user')
         .then(res => {
           this.setState({
-            user: res.data,
+            user: res.body,
           });
         })
         .catch(err => {
           console.log(err);
         });
 
-      axios.get(rootUrl + '/count/posts')
+      request.get(rootUrl + '/count/posts')
         .then(res => {
           this.setState({
-            length: res.data,
+            length: res.text,
           });
         })
         .catch(err => {
@@ -77,8 +75,8 @@ export default class Dashboard extends Component {
       let data = this.state.data.data;
       if (data) {
         data.data = this.state.fetched.filter(post => {
-          //return JSON.stringify(post).toLowerCase().indexOf(val) !== -1;
-          return JSON.stringify(post).toLowerCase().includes(val);
+          const includes = JSON.stringify(post).toLowerCase().includes(val);
+          return includes;
         });
         this.setState({
           data: data,
@@ -97,11 +95,11 @@ export default class Dashboard extends Component {
     });
 
     const skip = (this.state.skip + val).toString();
-    axios.get('https://react-eko.herokuapp.com/api/posts/' + skip)
+    request.get('https://react-eko.herokuapp.com/api/posts/' + skip)
       .then(res => {
         const data = this.state.data;
-        res.data.forEach(post => {
-          data.data.push(post);
+        res.body.forEach(post => {
+          data.push(post);
         });
         this.setState({
           data: data,
@@ -120,30 +118,30 @@ export default class Dashboard extends Component {
           <div>
           <p>
             <Link
+              style={{ display: 'none' }}
               to="/changepassword"
-              >{this.state.user.email}</Link></p>
+              >{this.state.user.user}</Link></p>
           <br/>
             <textarea onChange={this.onChange}></textarea>
           </div>
         }
         <div id="dashboard-content">
-        { this.state.data.data &&
-          this.state.data.data.map(post => {
-            return (
-              <div className="post" key={post._id}>
-                <h3>{post.title}</h3>
-                <p>{post.desc}</p>
-                <img src={post.src}/>
-                <div className="buttons">
-                  <Link to={'/p/d/' + post._id}>
-                    <button>Details</button>
-                  </Link>
-                  <Link to={'/p/' + post._id}>
-                    <button>Edit</button>
-                  </Link>
-                </div>
-              </div>
-            );
+        { this.state.data &&
+          this.state.data.map(post => {
+            const p = <div className="post" key={post._id}>
+                        <h3>{post.title}</h3>
+                        <p>{post.desc}</p>
+                        <img src={post.src}/>
+                        <div className="buttons">
+                          <Link to={'/p/d/' + post._id}>
+                            <button>Details</button>
+                          </Link>
+                          <Link to={'/p/' + post._id}>
+                            <button>Edit</button>
+                          </Link>
+                        </div>
+                      </div>;
+            return p;
           })
         }
         </div>

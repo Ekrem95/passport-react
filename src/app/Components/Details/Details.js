@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import request from 'superagent';
 import{ rootUrl, postDetails } from '../../helpers/actions';
 
@@ -13,10 +12,10 @@ export default class Details extends Component {
   }
 
   componentWillMount () {
-    axios.get(rootUrl + this.props.location.pathname.split('/').pop())
+    request.get(rootUrl + this.props.location.pathname.split('/').pop())
       .then(res => {
         this.setState({
-          data: res.data,
+          data: res.body,
         });
       })
       .catch(err => {
@@ -67,9 +66,8 @@ export default class Details extends Component {
             </form>
             { data.comments &&
               data.comments.map((comment, i) => {
-                return (
-                  <p key={i}>{comment}</p>
-                );
+                const p = <p key={i}>{comment}</p>;
+                return p;
               })
             }
       </div>

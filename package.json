@@ -14,15 +14,15 @@
   "scripts": {
     "start": "node app.js",
     "build": "NODE_ENV=production webpack -p",
+    "dev": "webpack -d --watch",
     "serve": "nodemon -q app.js --exec babel-node --presets es2015,stage-2",
     "test": "jest --watchAll",
-    "dev": "webpack -d --watch"
+    "test-file": "jest --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.16.2",
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-preset-react": "^6.24.1",

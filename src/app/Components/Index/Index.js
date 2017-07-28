@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import request from 'superagent';
 import { Link } from 'react-router-dom';
 import { loggedIn } from '../../helpers/actions';
 
@@ -15,10 +15,10 @@ export default class Index extends Component {
     if (!loggedIn()) {
       this.props.history.push('/login');
     } else {
-      axios.get('https://react-eko.herokuapp.com/api/posts')
+      request.get('https://react-eko.herokuapp.com/api/posts')
         .then(res => {
           this.setState({
-            data: res.data,
+            data: res.body,
           });
         })
         .catch(err => {
@@ -34,21 +34,20 @@ export default class Index extends Component {
         >
         { this.state.data.length > 0 &&
           this.state.data.map(post => {
-            return (
-              <div key={post._id}>
-                <h3>{post.title}</h3>
-                <img
-                  key={post._id}
-                  src={post.src}
-                />
-                <p>{post.desc}</p>
-                <span
-                  onClick={() => {
-                    this.props.history.push(`/p/d/${post._id}`);
-                  }}
-                  >{post.comments.length} comments</span>
-              </div>
-            );
+            const p = <div key={post._id}>
+                        <h3>{post.title}</h3>
+                        <img
+                          key={post._id}
+                          src={post.src}
+                        />
+                        <p>{post.desc}</p>
+                        <span
+                          onClick={() => {
+                            this.props.history.push(`/p/d/${post._id}`);
+                          }}
+                          >{post.comments.length} comments</span>
+                      </div>;
+            return p;
           })
         }
       </div>
