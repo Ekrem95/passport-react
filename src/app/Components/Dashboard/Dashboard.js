@@ -133,12 +133,18 @@ export default class Dashboard extends Component {
                         <p>{post.desc}</p>
                         <img src={post.src}/>
                         <div className="buttons">
-                          <Link to={'/p/d/' + post._id}>
-                            <button>Details</button>
-                          </Link>
-                          <Link to={'/p/' + post._id}>
-                            <button>Edit</button>
-                          </Link>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                this.props.history.push('/p/d/' + post._id, { data: post });
+                              }}
+                              >Details</button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                this.props.history.push('/p/' + post._id, { data: post });
+                              }}
+                              >Edit</button>
                         </div>
                       </div>;
             return p;

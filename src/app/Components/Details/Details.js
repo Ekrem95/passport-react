@@ -12,15 +12,21 @@ export default class Details extends Component {
   }
 
   componentWillMount () {
-    request.get(rootUrl + this.props.location.pathname.split('/').pop())
-      .then(res => {
-        this.setState({
-          data: res.body,
+    if (this.props.location.state === undefined) {
+      request.get(rootUrl + this.props.location.pathname.split('/').pop())
+        .then(res => {
+          this.setState({
+            data: res.body,
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    } else {
+      const data = this.props.location.state.data;
+      this.setState({ data });
+    }
+
   }
 
   sendComment (e) {

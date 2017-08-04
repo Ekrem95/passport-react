@@ -43,9 +43,9 @@ export default class Index extends Component {
                         <p>{post.desc}</p>
                         <span
                           onClick={() => {
-                            this.props.history.push(`/p/d/${post._id}`);
+                            this.props.history.push(`/p/d/${post._id}`, { data: post });
                           }}
-                          >{post.comments.length} comments</span>
+                          >{post.comments.length} comment(s)</span>
                       </div>;
             return p;
           })

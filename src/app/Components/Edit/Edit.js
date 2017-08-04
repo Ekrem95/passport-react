@@ -13,11 +13,16 @@ export default class Edit extends Component {
   }
 
   componentWillMount() {
-    request.get(rootUrl + this.id)
-      .then(res => {
-        this.setState({ data: res.body });
-      })
-      .catch(err => console.log(err));
+    if (this.props.location.state === undefined) {
+      request.get(rootUrl + this.id)
+        .then(res => {
+          this.setState({ data: res.body });
+        })
+        .catch(err => console.log(err));
+    } else {
+      const data =  this.props.location.state.data;
+      this.setState({ data });
+    }
   }
 
   edit() {
