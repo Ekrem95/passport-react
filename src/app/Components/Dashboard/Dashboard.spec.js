@@ -31,6 +31,9 @@ test('condition dependent', () => {
     );
     expect(Dashboard.prototype.componentDidMount.calledOnce).toEqual(true);
     expect(Dashboard.prototype.componentWillMount.calledOnce).toEqual(true);
+
+    expect(Dashboard.prototype.componentDidMount).toHaveProperty('callCount', 1);
+    expect(Dashboard.prototype.componentWillMount).toHaveProperty('callCount', 1);
   });
 test('functions', () => {
     expect(Dashboard.prototype.onChange).toHaveLength(1);
@@ -38,6 +41,17 @@ test('functions', () => {
     expect(Dashboard.prototype.onChange).toBeInstanceOf(Function);
     expect(Dashboard.prototype.loadMore).toBeInstanceOf(Function);
     expect(Dashboard.prototype.loadMoreButton).toBeInstanceOf(Function);
-
-    // expect(Add.prototype.add.calledOnce).toEqual(true);
   });
+
+test('simulate click events', () => {
+  sinon.spy(Dashboard.prototype, 'loadMoreButton');
+
+  // const wrapper = mount(
+  //   <BrowserRouter>
+  //     <Dashboard history={[]} />
+  //   </BrowserRouter>
+  // );
+
+  wrapper.setState({ skip: 0, length: 100 });
+
+});
