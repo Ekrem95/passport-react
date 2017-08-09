@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { store } from '../../helpers/reducers';
 import request from 'superagent';
 
@@ -56,43 +56,49 @@ export default class Nav extends Component {
       <div className="nav">
         {!this.state.loggedIn &&
           <div>
-            <Link
+            <NavLink
               to="/"
+              activeStyle={{ color: 'rgb(186, 61, 230)' }}
               className="link"
-              >Home</Link>
+              >Home</NavLink>
           <div className="link logout">
-            <Link
+            <NavLink
               to="/login"
+              activeStyle={{ color: 'rgb(186, 61, 230)' }}
               className="link"
-              >Login</Link>
-            <Link
+              >Login</NavLink>
+            <NavLink
               to="/signup"
+              activeStyle={{ color: 'rgb(186, 61, 230)' }}
               className="link"
-              >Signup</Link>
+              >Signup</NavLink>
           </div>
           </div>
         }
         {this.state.loggedIn &&
           <div>
-            <Link
+            <NavLink
               to="/"
               className="link"
-              >Home</Link>
-            <Link
+              >Home</NavLink>
+            <NavLink
               to="/dashboard"
+              activeStyle={{ color: 'rgb(186, 61, 230)' }}
               className="link"
-              >Dashboard</Link>
+              >Dashboard</NavLink>
             <div
               className="dropdown"
             >Links
-              <Link
+              <NavLink
                 to="/player"
+                activeStyle={{ color: 'rgb(186, 61, 230)' }}
                 className="link"
-                >Player</Link>
-              <Link
+                >Player</NavLink>
+              <NavLink
                 to="/add"
+                activeStyle={{ color: 'rgb(186, 61, 230)' }}
                 className="link"
-                >Add</Link>
+                >Add</NavLink>
             </div>
             <div>
               <a
