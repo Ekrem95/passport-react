@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { rootUrl } from '../../helpers/actions';
 import { auth, loggedIn } from '../../helpers/actions';
 
+import Posts from './Posts';
+
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: null,
       user: {},
       fetched: [],
       skip: 0,
@@ -126,30 +128,11 @@ export default class Dashboard extends Component {
           </div>
         }
         <div id="dashboard-content">
-        { this.state.data &&
-          this.state.data.map(post => {
-            const p = <div className="post" key={post._id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.desc}</p>
-                        <img src={post.src}/>
-                        <div className="buttons">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                this.props.history.push('/p/d/' + post._id, { data: post });
-                              }}
-                              >Details</button>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                this.props.history.push('/p/' + post._id, { data: post });
-                              }}
-                              >Edit</button>
-                        </div>
-                      </div>;
-            return p;
-          })
-        }
+          {this.state.data &&
+            <Posts
+              history={this.props.history}
+              posts={this.state.data} />
+          }
         </div>
       </div>
       {

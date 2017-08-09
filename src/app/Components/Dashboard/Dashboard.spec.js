@@ -43,15 +43,15 @@ test('functions', () => {
     expect(Dashboard.prototype.loadMoreButton).toBeInstanceOf(Function);
   });
 
-test('simulate click events', () => {
-  sinon.spy(Dashboard.prototype, 'loadMoreButton');
-
-  // const wrapper = mount(
-  //   <BrowserRouter>
-  //     <Dashboard history={[]} />
-  //   </BrowserRouter>
-  // );
-
-  wrapper.setState({ skip: 0, length: 100 });
-
-});
+// test('simulate click events', () => {
+//   sinon.spy(Dashboard.prototype, 'loadMoreButton');
+//
+//   const wrapper = mount(
+//     <BrowserRouter>
+//       <Dashboard history={[]} />
+//     </BrowserRouter>
+//   );
+//
+//   wrapper.setState({ skip: 0, length: 100 });
+//
+// });
