@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Posts extends Component {
-  layout() {
-
-    this.props.posts.forEach(post => {
-      const eko = post._id;
-      return eko;
-    });
-  }
-
   render() {
     return (
       <div>
@@ -41,3 +34,30 @@ export default class Posts extends Component {
     );
   }
 }
+
+export const loadMoreButton = (func) => {
+  const button = (
+    <button
+      id="load-more"
+      onClick={func}>Load More
+    </button>
+  );
+  return button;
+};
+
+export const changepassword = (username, onChange) => {
+  const link = (
+    <div>
+      {/* <p>
+        <Link
+          style={{ display: 'none' }}
+          to="/changepassword"
+          >{username}
+        </Link>
+      </p> */}
+      <br/>
+      <textarea onChange={onChange}></textarea>
+    </div>
+  );
+  return link;
+};

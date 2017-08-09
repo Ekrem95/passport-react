@@ -10,7 +10,7 @@ router.get('/user', (req, res) => {
   if (req.user) {
     const user = req.user;
     const token = jwt.sign({ user }, process.env.secret);
-    res.status(200).send({ user: user.username, token: token });
+    res.status(200).send({ username: user.username, token: token });
   } else {
     res.status(404).send({ user: null, token: null });
   }

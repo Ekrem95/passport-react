@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { rootUrl } from '../../helpers/actions';
 import { auth, loggedIn } from '../../helpers/actions';
 
-import Posts from './Posts';
+import Posts, { loadMoreButton, changepassword } from './Posts';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -51,6 +51,7 @@ export default class Dashboard extends Component {
 
       request.get('/api/user')
         .then(res => {
+          console.log(res.body);
           this.setState({
             user: res.body,
           });
@@ -74,9 +75,9 @@ export default class Dashboard extends Component {
   onChange(e) {
     const val = e.target.value.toLowerCase();
     if (this.state.data) {
-      let data = this.state.data.data;
+      let data = this.state.data;
       if (data) {
-        data.data = this.state.fetched.filter(post => {
+        data = this.state.fetched.filter(post => {
           const includes = JSON.stringify(post).toLowerCase().includes(val);
           return includes;
         });
@@ -117,15 +118,7 @@ export default class Dashboard extends Component {
       <div className="dashboard">
       <div className="content">
         {this.state.user &&
-          <div>
-          <p>
-            <Link
-              style={{ display: 'none' }}
-              to="/changepassword"
-              >{this.state.user.user}</Link></p>
-          <br/>
-            <textarea onChange={this.onChange}></textarea>
-          </div>
+          changepassword(this.state.user.username, this.onChange)
         }
         <div id="dashboard-content">
           {this.state.data &&
@@ -137,7 +130,7 @@ export default class Dashboard extends Component {
       </div>
       {
         this.state.skip + 5 < this.state.length &&
-        <button id="load-more" onClick={this.loadMoreButton}>Load More</button>
+        loadMoreButton(this.loadMoreButton)
       }
       </div>
     );
