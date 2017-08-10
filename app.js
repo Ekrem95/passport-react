@@ -15,7 +15,6 @@ const dotenv = require('dotenv');
 dotenv.load();
 
 mongoose.connect(process.env.mongoDb, { useMongoClient: true });
-// const db = mongoose.connection;
 
 const router = require('./routes/router');
 const api = require('./routes/api');
@@ -36,7 +35,9 @@ app.use(session({
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     saveUninitialized: true,
     resave: false,
-    maxAge: 14 * 24 * 3600000,
+    expires: new Date(Date.now() + (14 * 24 * 3600000)),
+
+    // maxAge: new Date(Date.now() + (14 * 24 * 3600000)),
   }));
 
 app.use(passport.initialize());

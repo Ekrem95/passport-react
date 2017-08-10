@@ -51,7 +51,6 @@ export default class Dashboard extends Component {
 
       request.get('/api/user')
         .then(res => {
-          console.log(res.body);
           this.setState({
             user: res.body,
           });
