@@ -116,7 +116,9 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        <Tweets />
+        <div className="leftSide">
+          <Tweets />
+        </div>
       <div className="content">
         {this.state.user &&
           changepassword(this.state.user.username, this.onChange)
@@ -128,11 +130,11 @@ export default class Dashboard extends Component {
               posts={this.state.data} />
           }
         </div>
+        {
+          this.state.skip + 5 < this.state.length &&
+          loadMoreButton(this.loadMoreButton)
+        }
       </div>
-      {
-        this.state.skip + 5 < this.state.length &&
-        loadMoreButton(this.loadMoreButton)
-      }
       </div>
     );
   }
