@@ -5,6 +5,7 @@ import { rootUrl } from '../../helpers/actions';
 import { auth, loggedIn } from '../../helpers/actions';
 
 import Posts, { loadMoreButton, changepassword } from './Posts';
+import Tweets from './Tweets';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -115,6 +116,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
+        <Tweets />
       <div className="content">
         {this.state.user &&
           changepassword(this.state.user.username, this.onChange)

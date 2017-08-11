@@ -288,6 +288,38 @@ body {
       background: rgb(33, 143, 205);
     }
   }
+
+  .tweets {
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    position: fixed;
+    left: 0;
+    top: 60px;
+    display: flex;
+    flex-flow: column;
+    height: 80vh;
+    width: 300px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+       display: none;
+    }
+
+    div {
+      width: 90%;
+      margin: 10px 0;
+      padding: 6px;
+      border: 3px solid rgba(190, 190, 190, 0.23);
+
+      &:hover {
+        background: rgba(12, 76, 124, 0.26);
+        cursor: pointer;
+      }
+
+      span {
+        margin: 0 12px 0 0;
+      }
+    }
+  }
 }
 
 #load-more {
