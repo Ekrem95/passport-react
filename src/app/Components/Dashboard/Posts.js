@@ -48,13 +48,6 @@ export const loadMoreButton = (func) => {
 export const changepassword = (username, onChange) => {
   const link = (
     <div>
-      {/* <p>
-        <Link
-          style={{ display: 'none' }}
-          to="/changepassword"
-          >{username}
-        </Link>
-      </p> */}
       <br/>
       <textarea onChange={onChange}></textarea>
     </div>

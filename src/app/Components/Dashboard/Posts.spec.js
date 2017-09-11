@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import sinon from 'sinon';
 
 // import { BrowserRouter } from 'react-router-dom';
-import Posts from './Posts';
+import Posts, { loadMoreButton, changepassword } from './Posts';
 
 const data = [
   {
@@ -39,6 +39,7 @@ test('has elements', () => {
 });
 
 test('Simulate click', () => {
+  const onButtonClick = sinon.spy();
   const detailsButton =  wrapper.find('button').at(0);
   const editButton =  wrapper.find('button').at(1);
 

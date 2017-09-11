@@ -11,14 +11,10 @@ const wrapper = mount(
 );
 
 test('has elements', () => {
-  expect(wrapper.find('div')).toHaveLength(4);
+  expect(wrapper.find('div')).toHaveLength(6);
   expect(wrapper.find('div.dashboard')).toHaveLength(1);
   expect(wrapper.find('div.content')).toHaveLength(1);
   expect(wrapper.find('div#dashboard-content')).toHaveLength(1);
-  expect(wrapper.find('p')).toHaveLength(1);
-  expect(wrapper.find('Link')).toHaveLength(1);
-  expect(wrapper.find('br')).toHaveLength(1);
-  expect(wrapper.find('textarea')).toHaveLength(1);
 });
 
 test('condition dependent', () => {
